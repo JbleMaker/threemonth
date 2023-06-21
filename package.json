@@ -1,0 +1,28 @@
+{
+  "name": "threemonth",
+  "version": "1.0.0",
+  "description": "ThreeMonth - Winter Sports Community",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JbleMaker/threemonth.git"
+  },
+  "author": "JbleMaker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JbleMaker/threemonth/issues"
+  },
+  "homepage": "https://github.com/JbleMaker/threemonth#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/node": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "nodemon": "^2.0.22"
+  }
+}
