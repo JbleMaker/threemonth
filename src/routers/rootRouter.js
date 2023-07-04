@@ -1,5 +1,5 @@
 import express from "express";
-import { viewHome, search } from "../controllers/userController";
+import { viewHome } from "../controllers/videoController";
 import {
   getJoin,
   postJoin,
@@ -18,6 +18,5 @@ rootRouter.get("/noticeView", noticeView);
 rootRouter.get("/communityView", communityView);
 rootRouter.route("/join").get(getJoin).post(postJoin);
 rootRouter.route("/login").get(getLogin).post(postLogin);
-rootRouter.get("/search", search);
 
 export default rootRouter;

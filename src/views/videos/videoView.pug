@@ -1,5 +1,10 @@
 extends ../base
 
 block content 
-  a(href=`${video.id}/edit`) Edit Video &rarr;
+  div 
+    h4=video.title
+    small=video.createdAt
+  br
+  a(href=`${video.id}/edit`) Edit Video &rarr; 
+  br
   a(href=`${video.id}/delete`) Delete Video &rarr;

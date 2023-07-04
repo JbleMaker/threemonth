@@ -1,1 +1,9 @@
 extends ../base
+include ../mixins/notice
+
+block content
+  each notice in notices
+    +notice(notice)
+  else
+    h4 Not Notice
+  a(href="/notice/upload") Notice Upload

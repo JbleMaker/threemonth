@@ -1,0 +1,15 @@
+extends ../base
+
+block content 
+  div 
+    h4=market.title
+    small=market.createdAt
+    h5=market.division
+    h5=market.price
+    h5=market.zone 
+    p=market.contents
+
+  br
+  a(href=`${market.id}/edit`) Edit Market &rarr; 
+  br
+  a(href=`${market.id}/delete`) Delete Market &rarr;

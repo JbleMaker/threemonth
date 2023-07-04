@@ -1,16 +1,17 @@
 import express from "express";
 import {
-  noticeUpload,
-  noticeSee,
+  getNoticeUpload,
+  postNoticeUpload,
+  noticeRead,
   noticeEdit,
   noticeDelete,
 } from "../controllers/noticeController";
 
 const noticeRouter = express.Router();
 
-noticeRouter.get("/upload", noticeUpload);
-noticeRouter.get("/:id(\\d+)", noticeSee);
-noticeRouter.get("/:id(\\d+)/edit", noticeEdit);
-noticeRouter.get("/:id(\\d+)/delete", noticeDelete);
+noticeRouter.route("/upload").get(getNoticeUpload).post(postNoticeUpload);
+noticeRouter.get("/:id([0-9a-f]{24})", noticeRead);
+noticeRouter.get("/:id([0-9a-f]{24})/edit", noticeEdit);
+noticeRouter.get("/:id([0-9a-f]{24})/delete", noticeDelete);
 
 export default noticeRouter;

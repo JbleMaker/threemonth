@@ -2,10 +2,12 @@ doctype html
 html(lang="ko")
   head 
     title #{pageTitle} | ThreeMonth 
+    //- ⬇️favicon
+    link(rel="icon" type="image/png" href="") 
+    //- ⬇makeShift
     link(rel="stylesheet" href="https://unpkg.com/mvp.css")
   body 
     include partials/header
     main
       block content
-      hr
     include partials/footer

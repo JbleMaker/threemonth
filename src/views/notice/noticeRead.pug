@@ -1,0 +1,11 @@
+extends ../base
+
+block content 
+  div 
+    h4=notice.title
+    h5=notice.contents
+    small=notice.createdAt
+  br
+  a(href=`${notice.id}/edit`) Edit Notice &rarr; 
+  br
+  a(href=`${notice.id}/delete`) Delete Notice &rarr;

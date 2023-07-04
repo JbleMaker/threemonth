@@ -1,3 +1,26 @@
 extends base.pug
+include mixins/video
+include mixins/market
+include mixins/notice
+include mixins/community
 
-block content 
+block content
+  each video in videos 
+    +video(video)
+  else 
+    li Sorry Video is not Found.
+  hr
+  each market in markets 
+    +market(market)
+  else 
+    li There are no Market posts.
+  hr
+  each notice in notices 
+    +notice(notice)
+  else 
+    li There are no Notice posts.
+  hr
+  each community in communities
+    +community(community)
+  else 
+    li There are no Community posts.

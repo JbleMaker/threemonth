@@ -1,16 +1,17 @@
 import express from "express";
 import {
-  marketUpload,
-  marketSee,
+  getMarketUpload,
+  postMarketUpload,
+  marketRead,
   marketEdit,
   marketDelete,
 } from "../controllers/marketController";
 
 const marketRouter = express.Router();
 
-marketRouter.get("/upload", marketUpload);
-marketRouter.get("/:id(\\d+)", marketSee);
-marketRouter.get("/:id(\\d+)/edit", marketEdit);
-marketRouter.get("/:id(\\d+)/delete", marketDelete);
+marketRouter.route("/upload").get(getMarketUpload).post(postMarketUpload);
+marketRouter.get("/:id([0-9a-f]{24})", marketRead);
+marketRouter.get("/:id([0-9a-f]{24})/edit", marketEdit);
+marketRouter.get("/:id([0-9a-f]{24})/delete", marketDelete);
 
 export default marketRouter;

@@ -1,1 +1,9 @@
 extends ../base
+include ../mixins/community
+
+block content 
+  each community in communities
+    +community(community)
+  else 
+    h4 There are no posts.
+  a(href="/community/upload") 게시글 작성

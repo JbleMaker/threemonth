@@ -1,1 +1,9 @@
 extends ../base
+include ../mixins/market
+
+block content 
+  each market in markets 
+    +market(market)
+  else 
+    h4 There are no posts.
+  a(href="/market/upload") 게시글 작성

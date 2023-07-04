@@ -1,0 +1,7 @@
+mixin community(community)
+  div
+    h4 
+      a(href=`/community/${community.id}`)=community.title
+    ul
+      li #{community.division}
+      small #{community.createdAt}.

@@ -1,0 +1,24 @@
+extends ../base
+
+block content 
+  form(method="post")
+    if errorMessage 
+      span=errorMessage
+    input(name="title" type="text" required placeholder="Title")
+    select(name="division")
+      option(value="konjiam") 곤지암
+      option(value="high1") 하이원
+      option(value="phoenix") 휘닉스
+      option(value="yongpyong") 용평
+      option(value="muju") 무주
+      option(value="edenvalley") 에덴밸리
+      option(value="wellihilli") 웰리힐리
+      option(value="o2") 오투
+      option(value="jisan") 지산
+      option(value="vivadi") 비발디
+      option(value="alpensia") 알펜시아
+      option(value="oakvalley") 오크밸리
+      option(value="pine") 양지파인
+      option(value="elysian") 엘리시안
+    textarea(name="contents" type="text" required placeholder="Description")
+    input(type="submit" value="Upload")

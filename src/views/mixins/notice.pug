@@ -1,0 +1,8 @@
+mixin notice(notice)
+  div
+    h4 
+      a(href=`/notice/${notice.id}`)=notice.title
+      br
+      small=new Date(notice.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
+
+

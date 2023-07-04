@@ -1,0 +1,19 @@
+extends ../base
+
+block content 
+  form(method="post")
+    if errorMessage 
+      span=errorMessage
+    input(name="title" type="text" required placeholder="Title")
+    select(name="division")
+      option(value="deck") 데크
+      option(value="binding") 바인딩
+      option(value="boots") 부츠
+      option(value="helmet") 헬맷
+      option(value="clothes") 의류
+      option(value="goggles") 고글
+      option(value="etc") 기타
+    input(name="price" type="text" required placeholder="가격")
+    input(name="zone" type="text" required placeholder="지역")
+    textarea(name="contents" type="text" required placeholder="Description")
+    input(type="submit" value="Upload")

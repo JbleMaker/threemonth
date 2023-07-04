@@ -1,0 +1,7 @@
+mixin market(market)
+  div
+    h4 
+      a(href=`/market/${market.id}`)=market.title
+    ul
+      li #{market.division}
+      small #{market.createdAt}.

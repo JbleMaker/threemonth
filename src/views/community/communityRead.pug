@@ -1,0 +1,13 @@
+extends ../base
+
+block content 
+  div 
+    h4=communities.title
+    small=communities.createdAt
+    h5=communities.division
+    p=communities.contents
+
+  br
+  a(href=`${communities.id}/edit`) Edit Community &rarr; 
+  br
+  a(href=`${communities.id}/delete`) Delete Community &rarr;
