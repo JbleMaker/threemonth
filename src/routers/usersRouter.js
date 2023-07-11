@@ -1,11 +1,35 @@
 import express from "express";
-import { edit, removeId, logout, watch } from "../controllers/userController";
+import {
+  getUserEdit,
+  postUserEdit,
+  logout,
+  userProfile,
+  startKakaoLogin,
+  finishKakaoLogin,
+  getChangePassword,
+  postChangePassword,
+} from "../controllers/userController";
+import {
+  protectorMiddleware,
+  publicOnlyMiddleware,
+  uploadAvatar,
+} from "../middlewares";
 
 const userRouter = express.Router();
 
-userRouter.get("/logout", logout);
-userRouter.get("/edit", edit);
-userRouter.get("/remove", removeId);
-userRouter.get("/:id", watch);
+userRouter.get("/logout", protectorMiddleware, logout);
+userRouter
+  .route("/edit")
+  .all(protectorMiddleware)
+  .get(getUserEdit)
+  .post(uploadAvatar.single("avatar"), postUserEdit);
+userRouter
+  .route("/change-password")
+  .all(protectorMiddleware)
+  .get(getChangePassword)
+  .post(postChangePassword);
+userRouter.get("/kakao/start", publicOnlyMiddleware, startKakaoLogin);
+userRouter.get("/kakao/finish", publicOnlyMiddleware, finishKakaoLogin);
+userRouter.get("/:id", userProfile);
 
 export default userRouter;

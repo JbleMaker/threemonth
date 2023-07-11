@@ -3,9 +3,14 @@ extends ../base
 block content 
   div 
     h4=notice.title
-    h5=notice.contents
+    pre 
+      p=notice.contents
     small=notice.createdAt
+  div 
+    small 
+      a(href=`/users/${notice.owner._id}`) #{notice.owner.name}
   br
+  if String(notice.owner._id.toString()) === String(loggedInUser._id)
   a(href=`${notice.id}/edit`) Edit Notice &rarr; 
   br
   a(href=`${notice.id}/delete`) Delete Notice &rarr;

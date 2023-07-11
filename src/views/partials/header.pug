@@ -5,12 +5,20 @@ header
       ul 
         li 
           a(href="/search") Search
-        li
-          a(href="/videos/upload") Video Upload
-        li
-          a(href="/login") Login
-        li
-          a(href="/join") Join
+        if loggedIn 
+          li
+            a(href="/videos/upload") Video Upload
+          li
+            a(href=`/users/${loggedInUser._id}`) My Profile
+          li
+            a(href="/users/edit") Edit Profile
+          li
+            a(href="/users/logout") LogOut
+        else
+          li
+            a(href="/join") Join
+          li
+            a(href="/login") Login
   nav
     ul
       li

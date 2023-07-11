@@ -1,30 +1,30 @@
-extends base.pug
-include mixins/video
-include mixins/market
-include mixins/notice
-include mixins/community
+extends ../base
+include ../mixins/video
+include ../mixins/market
+include ../mixins/notice
+include ../mixins/community
 
 block content
   div
-    each video in videos 
+    each video in user.videos 
       +video(video)
     else 
       li Sorry Video is not Found.
     hr
   div
-    each market in markets 
+    each market in user.markets 
       +market(market)
     else 
       li There are no Market posts.
     hr
   div
-    each notice in notices 
+    each notice in user.notices 
       +notice(notice)
     else 
       li There are no Notice posts.
     hr
   div  
-    each community in communities
+    each community in user.communities
       +community(community)
     else 
       li There are no Community posts.

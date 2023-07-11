@@ -4,8 +4,8 @@ block content
   form(method="post")
     if errorMessage 
       span=errorMessage
-    input(name="title" type="text" required placeholder="Title")
-    select(name="division")
+    input(name="title" type="text" required placeholder="Title" value=communities.title)
+    select(name="division")=communities.division
       option(value="곤지암") 곤지암
       option(value="하이원") 하이원
       option(value="휘닉스") 휘닉스
@@ -13,12 +13,13 @@ block content
       option(value="무주") 무주
       option(value="에덴밸리") 에덴밸리
       option(value="웰리힐리") 웰리힐리
-      option(value="오투") 오투
+      option(value="오투리조트") 오투리조트
       option(value="지산") 지산
       option(value="비발디") 비발디
       option(value="알펜시아") 알펜시아
       option(value="오크밸리") 오크밸리
       option(value="양지파인") 양지파인
       option(value="엘리시안") 엘리시안
-    textarea(name="contents" type="text" required placeholder="Description")
+      option(value="베어스타운") 베어스타운
+    textarea(name="contents" type="text" required placeholder="Description")=communities.contents
     input(type="submit" value="Upload")

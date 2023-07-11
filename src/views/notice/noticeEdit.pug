@@ -1,0 +1,9 @@
+extends ../base
+
+block content 
+  form(method="post")
+    if errorMessage 
+      span=errorMessage
+    input(name="title" type="text" required placeholder="Title" value=notice.title)
+    textarea(name="contents" type="text" required placeholder="Description" )=notice.contents
+    input(type="submit" value="Upload")

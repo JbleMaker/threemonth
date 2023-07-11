@@ -3,7 +3,8 @@ import {
   getCommuUpload,
   postCommuUpload,
   commuRead,
-  commuEdit,
+  getCommuEdit,
+  postCommuEdit,
   commuDelete,
 } from "../controllers/communityController";
 
@@ -11,7 +12,10 @@ const communityRouter = express.Router();
 
 communityRouter.route("/upload").get(getCommuUpload).post(postCommuUpload);
 communityRouter.get("/:id([0-9a-f]{24})", commuRead);
-communityRouter.get("/:id([0-9a-f]{24})/edit", commuEdit);
+communityRouter
+  .route("/:id([0-9a-f]{24})/edit")
+  .get(getCommuEdit)
+  .post(postCommuEdit);
 communityRouter.get("/:id([0-9a-f]{24})/delete", commuDelete);
 
 export default communityRouter;

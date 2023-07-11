@@ -1,0 +1,18 @@
+extends ../base
+
+block content 
+  if errorMessage
+    span=errorMessage
+  img(src=loggedInUser.avatarUrl width="200" height="200")
+  form(method="post" enctype="multipart/form-data") 
+    label(for="Avatal")
+    input(type="file" accept="image/*" id="avatar" name="avatar")
+    input(placeholder="Email" name="email" type="text", required value=loggedInUser.email)
+    if emailError 
+      h5=emailError
+    input(placeholder="Name" name="name" type="text", required value=loggedInUser.name)
+    input(placeholder="Location" name="location" type="text", required value=loggedInUser.location)
+    input(type="submit" value="UPDATE")
+    if !loggedInUser.socialOnly
+      hr
+      a(href="change-password") Change Password &rarr;

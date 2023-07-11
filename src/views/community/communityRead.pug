@@ -5,9 +5,13 @@ block content
     h4=communities.title
     small=communities.createdAt
     h5=communities.division
-    p=communities.contents
-
-  br
-  a(href=`${communities.id}/edit`) Edit Community &rarr; 
-  br
-  a(href=`${communities.id}/delete`) Delete Community &rarr;
+    pre 
+      p=communities.contents
+  div 
+    small
+      a(href=`/users/${communities.owner._id}`) #{communities.owner.name}
+  if String(communities.owner._id.toString()) === String(loggedInUser._id)
+    br
+    a(href=`${communities.id}/edit`) Edit Community &rarr; 
+    br
+    a(href=`${communities.id}/delete`) Delete Community &rarr;
