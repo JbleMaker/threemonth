@@ -1,4 +1,27 @@
 import multer from "multer";
+import multerS3 from "multer-s3";
+import { S3Client } from "@aws-sdk/client-s3";
+
+const s3 = new S3Client({
+  region: "ap-northeast-2", // region error solve
+  //region은 aws->s3->bucket 에 적혀있음
+  credentials: {
+    apiVersion: "2023-07-15",
+    //날짜는 aws->IAM->user->user click 시 생성날짜 존재
+    accessKeyId: process.env.AWS_ID,
+    secretAccessKey: process.env.AWS_SECRET,
+  },
+});
+
+const multerUplaoder = multerS3({
+  s3: s3,
+  bucket: "threemonth",
+  Condition: {
+    StringEquals: {
+      "s3:x-amz-acl": ["public-read"],
+    },
+  },
+});
 
 export const localsMiddleware = (req, res, next) => {
   //session data save
@@ -31,9 +54,11 @@ export const publicOnlyMiddleware = (req, res, next) => {
 export const uploadAvatar = multer({
   dest: "uploads/avatars/",
   limits: {},
+  storage: multerUplaoder,
 });
 
 export const uploadVideo = multer({
   dest: "uploads/videos/",
   limits: {},
+  storage: multerUplaoder,
 });

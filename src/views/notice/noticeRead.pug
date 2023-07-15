@@ -10,7 +10,7 @@ block content
         p=notice.contents
     div.owner
       a(href=`/users/${loggedInUser._id}`)
-        img.owner-avatar(src=notice.owner.avatarUrl)
+        img.owner-avatar(src=notice.owner.avatarUrl crossorigin)
       div
         a(href=`/users/${notice.owner._id}`) #{notice.owner.name}
         p="1102K subScriber"
