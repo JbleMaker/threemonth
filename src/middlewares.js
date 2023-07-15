@@ -14,8 +14,6 @@ const s3 = new S3Client({
   },
 });
 
-const isHeroku = process.env.NODE_ENV === "production";
-
 const imageUplaoder = multerS3({
   s3: s3,
   bucket: "threemonth/images",
@@ -40,7 +38,6 @@ export const localsMiddleware = (req, res, next) => {
   //session data save
   res.locals.loggedIn = Boolean(req.session.loggedIn);
   res.locals.loggedInUser = req.session.user || {};
-  res.locals.isHeroku = isHeroku;
   // res.locals.moment = require('moment');
   //npm i moment
   // console.log(typeof res.locals.loggedInUser.name);
@@ -70,11 +67,11 @@ export const publicOnlyMiddleware = (req, res, next) => {
 export const uploadAvatar = multer({
   dest: "uploads/avatars/",
   limits: {},
-  storage: isHeroku ? imageUplaoder : undefined,
+  storage: imageUplaoder,
 });
 
 export const uploadVideo = multer({
   dest: "uploads/videos/",
   limits: {},
-  storage: isHeroku ? videoUplaoder : undefined,
+  storage: videoUplaoder,
 });
