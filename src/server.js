@@ -19,6 +19,15 @@ const logger = morgan("dev");
 
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  // res.header('Cross-Origin-Embedder-Policy', 'require-corp');
+  // res.header('Cross-Origin-Opener-Policy', 'same-origin');
+  next();
+});
+
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -36,15 +45,6 @@ app.use(
     }),
   })
 );
-
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.header("Cross-Origin-Opener-Policy", "same-origin");
-  res.header("Cross-Origin-Embedder-Policy", "credentialless");
-  res.header("Access-Control-Allow-Headers");
-  res.header("Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 app.use(flash());
 app.use(localsMiddleware);

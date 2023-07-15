@@ -3,7 +3,8 @@ import multerS3 from "multer-s3";
 import { S3Client } from "@aws-sdk/client-s3";
 
 const s3 = new S3Client({
-  region: "ap-northeast-2", // region error solve
+  region: "ap-northeast-2",
+  // region error solve
   //region은 aws->s3->bucket 에 적혀있음
   credentials: {
     apiVersion: "2023-07-15",
@@ -18,6 +19,11 @@ const isHeroku = process.env.NODE_ENV === "production";
 const imageUplaoder = multerS3({
   s3: s3,
   bucket: "threemonth/images",
+  key: function (request, file, ab_callback) {
+    const newFileName = Date.now() + "-" + file.originalname;
+    const fullPath = "images/" + newFileName;
+    ab_callback(null, fullPath);
+  },
   Condition: {
     StringEquals: {
       "s3:x-amz-acl": ["public-read"],
@@ -28,6 +34,11 @@ const imageUplaoder = multerS3({
 const videoUplaoder = multerS3({
   s3: s3,
   bucket: "threemonth/videos",
+  key: function (request, file, ab_callback) {
+    const newFileName = Date.now() + "-" + file.originalname;
+    const fullPath = "videos/" + newFileName;
+    ab_callback(null, fullPath);
+  },
   Condition: {
     StringEquals: {
       "s3:x-amz-acl": ["public-read"],
@@ -39,6 +50,7 @@ export const localsMiddleware = (req, res, next) => {
   //session data save
   res.locals.loggedIn = Boolean(req.session.loggedIn);
   res.locals.loggedInUser = req.session.user || {};
+  res.locals.moment = require("moment");
   res.locals.isHeroku = isHeroku;
   // console.log(typeof res.locals.loggedInUser.name);
   next();
