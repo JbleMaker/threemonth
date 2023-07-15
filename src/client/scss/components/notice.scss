@@ -1,0 +1,24 @@
+//mixins 
+.notice__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h4{
+    color:#FE4E59;
+    margin-left: 10px;
+    font-size: 16px;
+  }
+  div{
+    .notice__name{
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .notice__date{
+      margin: 0px 20px;
+    }
+    .notice__views{
+      margin-right: 10px;
+    }
+  }
+}
+

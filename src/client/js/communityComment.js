@@ -1,6 +1,7 @@
 const communityContainer = document.getElementById("communityContainer");
 const form = document.getElementById("commentForm");
 const deleteBtn = document.querySelectorAll("#deleteCommentBtn");
+const sendBtn = form.querySelector("button");
 
 const addComment = (text, commentId) => {
   const communityComments = document.querySelector(".community__comments ul");
@@ -50,8 +51,16 @@ const handleSubmit = async (event) => {
   }
 };
 
+const handleEnter = (event) => {
+  if (event.keyCode == 13) {
+    event.preventDefault();
+    sendBtn.click();
+  }
+};
+
 if (form) {
   form.addEventListener("submit", handleSubmit);
+  form.addEventListener("keydown", handleEnter);
 }
 
 const handleClick = async (event) => {

@@ -1,9 +1,10 @@
 extends ../base
 
 block content 
-  form(method="post")
+  h3.notice-post 공지사항 작성
+  form.form__post(method="post")
     if errorMessage 
       span=errorMessage
-    input(name="title" type="text" required placeholder="Title")
+    input.form__post-space(name="title" type="text" required placeholder="Title")
     textarea(name="contents" type="text" required placeholder="Description")
     input(type="submit" value="Upload")

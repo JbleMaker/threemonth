@@ -7,13 +7,21 @@
 @import "./components/video-player.scss";
 @import "./components/header.scss";
 @import "./components/footer.scss";
+@import "./components/shared.scss";
+@import "./components/ownerShared.scss";
+@import "./components/forms.scss";
+@import "./components/contents-info.scss";
 
 @import "./components/video.scss";
 @import "./components/notice.scss";
-
+@import "./components/market.scss";
 
 //screen
+@import "./screen/home.scss";
 @import "./screen/videoRead.scss";
+@import "./screen/titleShared.scss";
+@import "./screen/login.scss";
+
 
 
 a{
@@ -22,7 +30,7 @@ a{
 }
 
 body {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Noto Sans KR';
   background-color: white;
   color: black;
 }
@@ -59,4 +67,14 @@ main {
   width: 150px;
   height: 150px;
   border-radius: 50%;;
+}
+.avatar-box{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .avatar-change{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;;
+  }
 }

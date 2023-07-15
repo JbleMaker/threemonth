@@ -5,23 +5,37 @@ include mixins/notice
 include mixins/community
 
 block content
-  div
-    each notice in notices 
-      +notice(notice)
-    else 
-      li There are no Notice posts.
-    hr
-  div
-    each market in markets 
-      +market(market)
-    else 
-      li There are no Market posts.
-    hr
-  div  
-    each community in communities
-      +community(community)
-    else 
-      li There are no Community posts.
+  div.notice__section
+    div.content__header
+      span 공지사항
+      a.fa-solid.fa-chevron(href="/noticeView") more
+    div.content__main
+      each notice in notices 
+        +notice(notice)
+      else 
+        li 게시물이 없습니다.
+
+  div.grid__section
+    div.market__section
+      div.content__header
+        span Market
+        a.fa-solid.fa-chevron(href="/marketView") more
+      div.content__main
+        each market in markets 
+          +market(market)
+        else 
+          li 게시물이 없습니다.
+
+    div.community__section
+      div.content__header
+        span Community
+        a.fa-solid.fa-chevron(href="/communityView") more
+      div.content__main
+        each community in communities
+          +community(community)
+        else 
+          li 게시물이 없습니다.
+
 
   div.video-grid
     each video in videos 

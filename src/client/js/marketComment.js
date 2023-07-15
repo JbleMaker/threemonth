@@ -1,6 +1,7 @@
 const marketContainer = document.getElementById("marketContainer");
 const form = document.getElementById("commentForm");
 const deleteBtn = document.querySelectorAll("#deleteCommentBtn");
+const sendBtn = form.querySelector("button");
 
 const addComment = (text, commentId) => {
   const marketComments = document.querySelector(".market__comments ul");
@@ -49,8 +50,16 @@ const handleSubmit = async (event) => {
   // 모든 댓글을 새로고침 하기때문에 서버에 부하가 걸릴수있음
 };
 
+const handleEnter = (event) => {
+  if (event.keyCode == 13) {
+    event.preventDefault();
+    sendBtn.click();
+  }
+};
+
 if (form) {
   form.addEventListener("submit", handleSubmit);
+  form.addEventListener("keydown", handleEnter);
 }
 
 const handleClick = async (event) => {

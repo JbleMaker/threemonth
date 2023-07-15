@@ -1,16 +1,21 @@
 extends ../base
 
 block content 
-  div 
-    h4=notice.title
-    pre 
-      p=notice.contents
-    small=notice.createdAt
-  div 
-    small 
-      a(href=`/users/${notice.owner._id}`) #{notice.owner.name}
-  br
-  if String(notice.owner._id.toString()) === String(loggedInUser._id)
-  a(href=`${notice.id}/edit`) Edit Notice &rarr; 
-  br
-  a(href=`${notice.id}/delete`) Delete Notice &rarr;
+  div.title__total
+    div.title__content-read
+      span.title__content-title #{notice.title}
+      span.title__content-date=new Date(notice.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
+    div.title__content-contents
+      pre 
+        p=notice.contents
+    div.owner
+      a(href=`/users/${loggedInUser._id}`)
+        img.owner-avatar(src=notice.owner.avatarUrl)
+      div
+        a(href=`/users/${notice.owner._id}`) #{notice.owner.name}
+        p="1102K subScriber"
+      div.controlls
+        if String(notice.owner._id.toString()) === String(loggedInUser._id) || loggedInUser.identifier ==="admin"
+          a.button(href=`${notice.id}/edit`) Edit Video &rarr; 
+          br
+          a.button(href=`${notice.id}/delete`) Delete Video &rarr;

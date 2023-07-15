@@ -2,36 +2,45 @@ extends ../base
 
 block content 
   div#marketContainer(data-id=market._id)
-    h4=market.title
-    small=market.createdAt
-    h5=market.division
-    h5=market.price
-    h5=market.zone 
-    pre 
-      p=market.contents
-  div 
-    small
-      a(href=`/users/${market.owner._id}`) #{market.owner.name}
-  if String(market.owner._id.toString()) === String(loggedInUser._id)
-    br
-    a(href=`${market.id}/edit`) Edit Market &rarr; 
-    br
-    a(href=`${market.id}/delete`) Delete Market &rarr;
-  if loggedIn
+    div.title__total
+      div.title__content-read
+        span.title__content-title #{market.title}
+        span.title__content-date=new Date(market.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
+      div.title__content-contents
+        div.contents__info
+          span 분류 : #{market.division}
+          span 가격 : #{market.price}
+          span 지역 : #{market.zone }
+        pre 
+          p=market.contents
+
+  div.owner
+    img.owner-avatar(src=market.owner.avatarUrl)
     div
-      form#commentForm
-        label Comment
-        textarea(cols="30" rows="10")
-        button Add Comment
-  div
-    ul 
-      each comment in market.comments.reverse() 
-        li#marketComment 
-          span #{comment.name}
-          span #{comment.text}
-          span=new Date(market.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
-          if String(comment.owner) === String(loggedInUser._id) 
-            button.comment-delete#deleteCommentBtn(data-id=comment._id)(data-marketId=market._id) 삭제
+      a(href=`/users/${market.owner._id}`) #{market.owner.name}
+      p="1102K subScriber"
+    div.controlls
+      if String(market.owner._id.toString()) === String(loggedInUser._id) || loggedInUser.identifier ==="admin"
+        a.button(href=`${market.id}/edit`) Edit Video &rarr; 
+        br
+        a.button(href=`${market.id}/delete`) Delete Video &rarr;
+
+  if loggedIn
+  div.add__comment
+    form.add__comment-form#commentForm
+      textarea(placeholder="Write a nice commment...")
+      button Add Comment
+
+  div.comments
+  ul 
+    each comment in market.comments.reverse()
+      li#marketComment.comments__content
+        span.comment__name=comment.name
+        div
+          span=comment.text
+          span.comment__date=new Date(market.createdAt).toLocaleDateString("ko-kr", {year: 'numeric', month: 'long', day: 'numeric'})
+        if String(comment.owner) === String(loggedInUser._id)
+          button.comment-delete.fa-solid.fa-trash-can.fa-2xl#deleteCommentBtn(data-id=comment._id)(data-marketId=market._id)
 
 block scripts 
   if loggedIn

@@ -1,11 +1,9 @@
 mixin notice(notice)
-  div
+  div.notice__content
     h4 
-      a(href=`/notice/${notice.id}`)#noticeView(data-id=notice._id)=notice.title
-      br
-      span #{notice.owner.name} • 
-      span #{notice.meta.views} 회
-      br
-      small=new Date(notice.createdAt).toLocaleDateString("ko-kr", {year: 'numeric', month: 'long', day: 'numeric'})
-
+      a(href=`/notice/${notice.id}`)#noticeView(data-id=notice._id) [공지사항] #{notice.title}
+    div
+      span.notice__name #{notice.owner.name}
+      small.notice__date=new Date(notice.createdAt).toLocaleDateString("ko-kr", {year: 'numeric', month: 'long', day: 'numeric'})
+      small.notice__views 조회 #{notice.meta.views} 회
 

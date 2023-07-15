@@ -11,11 +11,10 @@ export const viewHome = async (req, res) => {
   //home video
   const videos = await Video.find({})
     .populate("owner")
-    .limit(6)
     .sort({ createdAt: "desc" });
   const markets = await Market.find({})
     .populate("owner")
-    .limit(6)
+    .limit(5)
     .sort({ createdAt: "desc" });
   const notices = await Notice.find({})
     .populate("owner")
@@ -23,7 +22,7 @@ export const viewHome = async (req, res) => {
     .sort({ createdAt: "desc" });
   const communities = await Community.find({})
     .populate("owner")
-    .limit(6)
+    .limit(5)
     .sort({ createdAt: "desc" });
   return res.render("home", {
     pageTitle: "Home",
@@ -160,8 +159,16 @@ export const videoDelete = async (req, res) => {
 
 export const videoSearch = async (req, res) => {
   const { keyword } = req.query;
+  let videos = [];
+  if (keyword) {
+    videos = await Video.find({
+      title: {
+        $regex: new RegExp(keyword, "i"),
+      },
+    }).populate("owner");
+  }
 
-  return res.render("search", { pageTitle: "Search" });
+  return res.render("search", { pageTitle: "Search", videos });
 };
 
 export const registerView = async (req, res) => {

@@ -1,10 +1,10 @@
 mixin community(community)
-  div
-    h4 
+  div.home__content
+    div.home__content-header
+      span [#{community.division}]
       a(href=`/community/${community.id}`)#communityView(data-id=community._id)=community.title
-    br
-    span #{community.division}
-    span #{community.owner.name} • 
-    span #{community.meta.views} 회
-    br
-    small=new Date(community.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
+    div.home__content-owner
+      span.owner__name #{community.owner.name}
+      span.owner__date=new Date(community.createdAt).toLocaleDateString("ko-kr", {year: 'numeric', month: 'long', day: 'numeric'})
+      span.owner__views 조회 #{community.meta.views} 회
+

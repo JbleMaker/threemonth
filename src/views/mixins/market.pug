@@ -1,10 +1,9 @@
 mixin market(market)
-  div
-    h4 
+  div.home__content
+    div.home__content-header
+      span [#{market.division}]
       a(href=`/market/${market.id}`)#marketView(data-id=market._id)=market.title
-      br
-      span #{market.division}
-      span #{market.owner.name} • 
-      span #{market.meta.views} 회
-      br
-      small=new Date(market.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
+    div.home__content-owner
+      span.owner__name #{market.owner.name}
+      span.owner__date=new Date(market.createdAt).toLocaleDateString("ko-kr", {year: 'numeric', month: 'long', day: 'numeric'})
+      span.owner__views 조회 #{market.meta.views} 회

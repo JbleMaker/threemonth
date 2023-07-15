@@ -1,10 +1,10 @@
 extends ../base
 
 block content 
-  form(method="post")
+  form.form__post(method="post")
     if errorMessage 
       span=errorMessage
-    input(name="title" type="text" required placeholder="Title" value=communities.title)
+    input.form__post-space(name="title" type="text" required placeholder="Title" value=communities.title)
     select(name="division")=communities.division
       option(value="곤지암") 곤지암
       option(value="하이원") 하이원

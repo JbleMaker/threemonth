@@ -1,10 +1,11 @@
 extends ../base
 
 block content 
-  form(method="post")
+  h3.market-post 게시물 작성
+  form.form__post(method="post")
     if errorMessage 
       span=errorMessage
-    input(name="title" type="text" required placeholder="Title" value=market.title)
+    input.form__post-space(name="title" type="text" required placeholder="Title" value=market.title)
     select(name="division" value=market.division)
       option(value="deck") 데크
       option(value="binding") 바인딩
@@ -13,7 +14,7 @@ block content
       option(value="clothes") 의류
       option(value="goggles") 고글
       option(value="etc") 기타
-    input(name="price" type="text" required placeholder="가격" value=market.price)
-    input(name="zone" type="text" required placeholder="지역" value=market.zone)
+    input.form__post-space(name="price" type="text" required placeholder="가격" value=market.price)
+    input.form__post-space(name="zone" type="text" required placeholder="지역" value=market.zone)
     textarea(name="contents" type="text" required placeholder="Description")=market.contents
     input(type="submit" value="Upload")
