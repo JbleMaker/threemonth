@@ -144,7 +144,7 @@ export const finishKakaoLogin = async (req, res) => {
     if (!user) {
       user = await User.create({
         avataUrl: userData.profile.profile_image_url
-          ? userData.profile.profile_image_url
+          ? `/${userData.profile.profile_image_url}`
           : "undefined",
         identifier: userData.email,
         name: userData.profile.nickname ? userData.profile.nickname : "Unknown",
