@@ -113,8 +113,8 @@ export const postVideoUpload = async (req, res) => {
   try {
     const newVideo = await Video.create({
       title,
-      fileUrl: isHeroku ? video[0].location : `/${video[0].path}`,
-      thumbUrl: isHeroku ? thumb[0].location : `/${thumb[0].path}`,
+      fileUrl: video[0].location,
+      thumbUrl: thumb[0].location,
       owner: _id,
       description,
       hashtags: Video.formatHashtags(hashtags),
