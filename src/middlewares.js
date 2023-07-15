@@ -13,9 +13,21 @@ const s3 = new S3Client({
   },
 });
 
-const multerUplaoder = multerS3({
+const isHeroku = process.env.NODE_ENV === "production";
+
+const imageUplaoder = multerS3({
   s3: s3,
-  bucket: "threemonth",
+  bucket: "threemonth/images",
+  Condition: {
+    StringEquals: {
+      "s3:x-amz-acl": ["public-read"],
+    },
+  },
+});
+
+const videoUplaoder = multerS3({
+  s3: s3,
+  bucket: "threemonth/videos",
   Condition: {
     StringEquals: {
       "s3:x-amz-acl": ["public-read"],
@@ -27,6 +39,7 @@ export const localsMiddleware = (req, res, next) => {
   //session data save
   res.locals.loggedIn = Boolean(req.session.loggedIn);
   res.locals.loggedInUser = req.session.user || {};
+  res.locals.isHeroku = isHeroku;
   // console.log(typeof res.locals.loggedInUser.name);
   next();
 };
@@ -54,11 +67,11 @@ export const publicOnlyMiddleware = (req, res, next) => {
 export const uploadAvatar = multer({
   dest: "uploads/avatars/",
   limits: {},
-  storage: multerUplaoder,
+  storage: isHeroku ? imageUplaoder : undefined,
 });
 
 export const uploadVideo = multer({
   dest: "uploads/videos/",
   limits: {},
-  storage: multerUplaoder,
+  storage: isHeroku ? videoUplaoder : undefined,
 });
