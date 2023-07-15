@@ -16,7 +16,6 @@ module.exports = {
     videoComment: BASE_JS + "videoComment",
   },
   mode: "development",
-  watch: true,
   plugins: [
     new MiniCssExtractPlugin({
       filename: "css/styles.css",

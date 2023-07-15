@@ -1,7 +1,7 @@
 mixin notice(notice)
-  div.notice__content
-    h4 
-      a(href=`/notice/${notice.id}`)#noticeView(data-id=notice._id) [공지사항] #{notice.title}
+  div.notice__content#noticeView(data-id=notice._id)
+    h4
+      a(href=`/notice/${notice.id}`) [공지사항] #{notice.title}
     div
       span.notice__name #{notice.owner.name}
       small.notice__date=new Date(notice.createdAt).toLocaleDateString("ko-kr", {year: 'numeric', month: 'long', day: 'numeric'})

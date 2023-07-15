@@ -4,8 +4,12 @@
   "description": "ThreeMonth - Winter Sports Community",
   "main": "index.js",
   "scripts": {
+    "start" : "node build/init.js",
+    "build" : "npm run build:server && npm run build:assets",
+    "build:server": "babel src -d build",
+    "build:assets": "webpack --mode=production",
     "dev:server": "nodemon",
-    "dev:assets": "webpack"
+    "dev:assets": "webpack --mode=development -w"
   },
   "repository": {
     "type": "git",
@@ -32,7 +36,8 @@
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.5",
+    "@babel/cli": "^7.22.9",
+    "@babel/core": "^7.22.9",
     "@babel/node": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
     "babel-loader": "^9.1.3",

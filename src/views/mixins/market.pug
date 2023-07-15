@@ -1,8 +1,8 @@
 mixin market(market)
-  div.home__content
+  div.home__content#marketView(data-id=market._id)
     div.home__content-header
       span [#{market.division}]
-      a(href=`/market/${market.id}`)#marketView(data-id=market._id)=market.title
+      a(href=`/market/${market.id}`)=market.title
     div.home__content-owner
       span.owner__name #{market.owner.name}
       span.owner__date=new Date(market.createdAt).toLocaleDateString("ko-kr", {year: 'numeric', month: 'long', day: 'numeric'})

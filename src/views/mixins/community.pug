@@ -1,8 +1,8 @@
 mixin community(community)
-  div.home__content
+  div.home__content#communityView(data-id=community._id)
     div.home__content-header
       span [#{community.division}]
-      a(href=`/community/${community.id}`)#communityView(data-id=community._id)=community.title
+      a(href=`/community/${community.id}`)=community.title
     div.home__content-owner
       span.owner__name #{community.owner.name}
       span.owner__date=new Date(community.createdAt).toLocaleDateString("ko-kr", {year: 'numeric', month: 'long', day: 'numeric'})
