@@ -19,11 +19,6 @@ const isHeroku = process.env.NODE_ENV === "production";
 const imageUplaoder = multerS3({
   s3: s3,
   bucket: "threemonth/images",
-  key: function (request, file, ab_callback) {
-    const newFileName = Date.now() + "-" + file.originalname;
-    const fullPath = "images/" + newFileName;
-    ab_callback(null, fullPath);
-  },
   Condition: {
     StringEquals: {
       "s3:x-amz-acl": ["public-read"],
@@ -34,11 +29,6 @@ const imageUplaoder = multerS3({
 const videoUplaoder = multerS3({
   s3: s3,
   bucket: "threemonth/videos",
-  key: function (request, file, ab_callback) {
-    const newFileName = Date.now() + "-" + file.originalname;
-    const fullPath = "videos/" + newFileName;
-    ab_callback(null, fullPath);
-  },
   Condition: {
     StringEquals: {
       "s3:x-amz-acl": ["public-read"],
