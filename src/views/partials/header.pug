@@ -7,8 +7,9 @@ header
         li 
           a(href="/search") Search
         if loggedIn 
-          li
-            a(href="/videos/upload") Video Upload
+          if loggedInUser.identifier ==="admin"
+            li
+              a(href="/videos/upload") Video Upload
           li
             a(href="/users/edit") Edit Profile
           li
