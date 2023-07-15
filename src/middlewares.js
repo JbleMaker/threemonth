@@ -40,8 +40,9 @@ export const localsMiddleware = (req, res, next) => {
   //session data save
   res.locals.loggedIn = Boolean(req.session.loggedIn);
   res.locals.loggedInUser = req.session.user || {};
-  res.locals.moment = require("moment");
   res.locals.isHeroku = isHeroku;
+  // res.locals.moment = require('moment');
+  //npm i moment
   // console.log(typeof res.locals.loggedInUser.name);
   next();
 };
