@@ -19,17 +19,44 @@ block content
         span#fullScreen
           i.fas.fa-expand
 
-  div 
-    h4=video.title
-    small=video.createdAt
-  div 
-    small
-      a(href=`/users/${video.owner._id}`) #{video.owner.name}
-  if String(video.owner._id.toString()) === String(loggedInUser._id)
-    hr
-    br
-    a(href=`${video.id}/edit`) Edit Video &rarr; 
-    br
-    a(href=`${video.id}/delete`) Delete Video &rarr;
+  div.video__data
+    p.video__title=video.title
+    div.video__owner
+      img.video__owner-avatar(src=video.owner.avatarUrl)
+      div
+        a(href=`/users/${video.owner._id}`) #{video.owner.name}
+        p="1102K subScriber"
+      div.video__controlls
+        if String(video.owner._id.toString()) === String(loggedInUser._id)
+          a.button(href=`${video.id}/edit`) Edit Video &rarr; 
+          br
+          a.button(href=`${video.id}/delete`) Delete Video &rarr;
+
+    div.video__info
+      div
+        span #{video.meta.views} views
+        span=new Date(video.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
+      span.video__info-center=video.hashtags
+      span=video.description
+
+  if loggedIn
+    div.add__comment
+      form.add__comment-form#commentForm
+        textarea(placeholder="Write a nice commment...")
+        button Add Comment
+
+  div.comments
+    ul 
+      each comment in video.comments.reverse()
+        li#videoComment.comments__content
+          span.comment__name=comment.name
+          div
+            span=comment.text
+            span.comment__date=new Date(video.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
+          if String(comment.owner) === String(loggedInUser._id) 
+            button.comment-delete.fa-solid.fa-trash-can.fa-2xl#deleteCommentBtn(data-id=comment._id)(data-videoId=video._id)
+
 block scripts  
   script(src="/static/js/videoPlayer.js") 
+  if loggedIn 
+    script(src="/static/js/videoComment.js")

@@ -163,6 +163,7 @@ export const finishKakaoLogin = async (req, res) => {
 export const logout = (req, res) => {
   req.session.loggedIn = false;
   req.session.user = null;
+  req.flash("info", "로그아웃 되었습니다.");
   return res.redirect("/");
 };
 
@@ -247,21 +248,22 @@ export const postChangePassword = async (req, res) => {
 
 export const userProfile = async (req, res) => {
   const { id } = req.params;
-  const user = await User.findById(id)
-    .populate("videos")
-    .populate("markets")
-    .populate("communities")
-    .populate("notices");
-  // console.log(user);
-  if (!user) {
-    return res.status(ERROR_CODE).render("404");
-  }
-  const markets = await Market.find({ owner: user._id });
-  const communities = await Community.find({ owner: user._id });
-  const notices = await Notice.find({ owner: user._id });
+  console.log(id);
+  const user = await User.findById(id).populate({
+    path: "videos",
+    populate: {
+      path: "owner",
+      model: "User",
+    },
+  });
+  console.log(user);
 
+  if (!user) {
+    return res.status(404).render("404", { pageTitle: "User Not Found." });
+  }
   return res.render("users/userProfile", {
-    pageTitle: `${user.name}의 Profile`,
+    pageTitle: `${user.name}'s Profile`,
     user,
+    recentVideo: user.videos[user.videos.length - 1],
   });
 };

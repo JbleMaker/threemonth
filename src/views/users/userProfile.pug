@@ -1,30 +1,36 @@
 extends ../base
 include ../mixins/video
-include ../mixins/market
-include ../mixins/notice
-include ../mixins/community
 
 block content
-  div
-    each video in user.videos 
+  div.profile__data
+    img(src=user.avatarUrl).avatar
+    h3=user.name
+  div.video-grid
+    each video in user.videos
       +video(video)
     else 
-      li Sorry Video is not Found.
-    hr
-  div
-    each market in user.markets 
-      +market(market)
-    else 
-      li There are no Market posts.
-    hr
-  div
-    each notice in user.notices 
-      +notice(notice)
-    else 
-      li There are no Notice posts.
-    hr
-  div  
-    each community in user.communities
-      +community(community)
-    else 
-      li There are no Community posts.
+      span.empty__message No Videos found.
+
+  //- div
+  //-   each video in user.videos 
+  //-     +video(video)
+  //-   else 
+  //-     li Sorry Video is not Found.
+  //-   hr
+  //- div
+  //-   each market in user.markets 
+  //-     +market(market)
+  //-   else 
+  //-     li There are no Market posts.
+  //-   hr
+  //- div
+  //-   each notice in user.notices 
+  //-     +notice(notice)
+  //-   else 
+  //-     li There are no Notice posts.
+  //-   hr
+  //- div  
+  //-   each community in user.communities
+  //-     +community(community)
+  //-   else 
+  //-     li There are no Community posts.

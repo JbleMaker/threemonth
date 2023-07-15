@@ -1,7 +1,7 @@
 extends ../base
 
 block content 
-  div 
+  div#communityContainer(data-id=communities._id)
     h4=communities.title
     small=communities.createdAt
     h5=communities.division
@@ -15,3 +15,22 @@ block content
     a(href=`${communities.id}/edit`) Edit Community &rarr; 
     br
     a(href=`${communities.id}/delete`) Delete Community &rarr;
+
+  if loggedIn
+    div
+      form#commentForm
+        label Comment
+        textarea(cols="30" rows="10")
+        button Add Comment
+  div
+    ul 
+      each comment in communities.comments.reverse() 
+        li#communityComment 
+          span #{comment.name}
+          span #{comment.text}
+          span=new Date(communities.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
+          if String(comment.owner) === String(loggedInUser._id) 
+            button.comment-delete#deleteCommentBtn(data-id=comment._id)(data-communityId=communities._id) 삭제
+block scripts 
+  if loggedIn
+    script(src="../static/js/communityComment.js")

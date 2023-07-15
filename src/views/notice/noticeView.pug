@@ -6,4 +6,7 @@ block content
     +notice(notice)
   else
     h4 Not Notice
-  a(href="/notice/upload") Notice Upload
+  if loggedInUser.name === "admin"
+    a(href="/notice/upload") Notice Upload
+block scripts
+  script(src="/static/js/noticeView.js")

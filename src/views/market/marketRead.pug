@@ -1,7 +1,7 @@
 extends ../base
 
 block content 
-  div 
+  div#marketContainer(data-id=market._id)
     h4=market.title
     small=market.createdAt
     h5=market.division
@@ -17,3 +17,22 @@ block content
     a(href=`${market.id}/edit`) Edit Market &rarr; 
     br
     a(href=`${market.id}/delete`) Delete Market &rarr;
+  if loggedIn
+    div
+      form#commentForm
+        label Comment
+        textarea(cols="30" rows="10")
+        button Add Comment
+  div
+    ul 
+      each comment in market.comments.reverse() 
+        li#marketComment 
+          span #{comment.name}
+          span #{comment.text}
+          span=new Date(market.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
+          if String(comment.owner) === String(loggedInUser._id) 
+            button.comment-delete#deleteCommentBtn(data-id=comment._id)(data-marketId=market._id) 삭제
+
+block scripts 
+  if loggedIn
+    script(src="../static/js/marketComment.js") 

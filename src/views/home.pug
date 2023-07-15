@@ -6,10 +6,10 @@ include mixins/community
 
 block content
   div
-    each video in videos 
-      +video(video)
+    each notice in notices 
+      +notice(notice)
     else 
-      li Sorry Video is not Found.
+      li There are no Notice posts.
     hr
   div
     each market in markets 
@@ -17,14 +17,15 @@ block content
     else 
       li There are no Market posts.
     hr
-  div
-    each notice in notices 
-      +notice(notice)
-    else 
-      li There are no Notice posts.
-    hr
   div  
     each community in communities
       +community(community)
     else 
       li There are no Community posts.
+
+  div.video-grid
+    each video in videos 
+      +video(video)
+    else 
+      li Sorry Video is not Found.
+    hr

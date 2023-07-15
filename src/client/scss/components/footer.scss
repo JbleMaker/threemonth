@@ -1,0 +1,27 @@
+.footer__main{
+  display: flex;
+  justify-content: center;
+  .footer__container{
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    height: 100px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-top: 1px solid black;
+    img{
+      width: 150px;
+    }
+    .footer__social{
+      a{
+        margin: 0px 20px;
+      }
+    }
+    footer{
+      opacity: 0.5;
+      text-align: center;
+    }
+  }
+}

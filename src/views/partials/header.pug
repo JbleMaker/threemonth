@@ -1,30 +1,34 @@
 header 
-  div
-    a(href="/") Home
+  a(href="/").header__logo
+    img(src="/logo.png" type="image/png")
+  div.header__list
     nav
-      ul 
+      ul.header__list-user
         li 
           a(href="/search") Search
         if loggedIn 
           li
             a(href="/videos/upload") Video Upload
           li
-            a(href=`/users/${loggedInUser._id}`) My Profile
-          li
             a(href="/users/edit") Edit Profile
           li
             a(href="/users/logout") LogOut
+          li
+            a(href=`/users/${loggedInUser._id}`)
+              if !loggedInUser.avatarUrl
+                span 😍
+              else
+                img.header__avatar(src=loggedInUser.avatarUrl,crossorigin)
         else
           li
             a(href="/join") Join
           li
             a(href="/login") Login
-  nav
-    ul
-      li
-        a(href="/marketView") Market
-      li
-        a(href="/communityView") Community
-      li
-        a(href="/noticeView") Notice
-
+div.header__content
+  ul.header__list-content
+    li
+      a(href="/marketView") Market
+    li
+      a(href="/communityView") Community
+    li
+      a(href="/noticeView") Notice

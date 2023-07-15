@@ -3,17 +3,26 @@ import Market from "../models/Market";
 import Notice from "../models/Notice";
 import Community from "../models/Community";
 import User from "../models/User";
+import Videocomment from "../models/Videocomment";
 
 const ERROR_CODE = 404;
 
 export const viewHome = async (req, res) => {
   //home video
-  const videos = await Video.find({}).limit(6).sort({ createdAt: "desc" });
-  const markets = await Market.find({}).limit(6).sort({ createdAt: "desc" });
-  const notices = await Notice.find({}).limit(1).sort({ createdAt: "desc" });
-  const communities = await Community.find({})
+  const videos = await Video.find({})
+    .populate("owner")
     .limit(6)
-    .sort({ createdAt: "desc" })
+    .sort({ createdAt: "desc" });
+  const markets = await Market.find({})
+    .populate("owner")
+    .limit(6)
+    .sort({ createdAt: "desc" });
+  const notices = await Notice.find({})
+    .populate("owner")
+    .limit(1)
+    .sort({ createdAt: "desc" });
+  const communities = await Community.find({})
+    .populate("owner")
     .limit(6)
     .sort({ createdAt: "desc" });
   return res.render("home", {
@@ -29,7 +38,7 @@ export const videoView = async (req, res) => {
   //watch
   const { id } = req.params;
   // console.log(id);
-  const video = await Video.findById(id).populate("owner");
+  const video = await Video.findById(id).populate("owner").populate("comments");
   // console.log(video._id.toString());
 
   if (!video) {
@@ -98,13 +107,14 @@ export const postVideoUpload = async (req, res) => {
     session: {
       user: { _id },
     },
-    file: { path },
+    files: { video, thumb },
     body: { title, description, hashtags },
   } = req;
   try {
     const newVideo = await Video.create({
       title,
-      fileUrl: `/${path}`,
+      fileUrl: `/${video[0].path}`,
+      thumbUrl: `/${thumb[0].path}`,
       owner: _id,
       description,
       hashtags: Video.formatHashtags(hashtags),
@@ -152,4 +162,54 @@ export const videoSearch = async (req, res) => {
   const { keyword } = req.query;
 
   return res.render("search", { pageTitle: "Search" });
+};
+
+export const registerView = async (req, res) => {
+  const { id } = req.params;
+  const video = await Video.findById(id);
+  if (!video) {
+    return res.status(404);
+  }
+  video.meta.views = video.meta.views + 1;
+  await video.save();
+  return res.status(200);
+};
+
+export const videoCreateComment = async (req, res) => {
+  const {
+    params: { id },
+    body: { text },
+    session: { user },
+  } = req;
+
+  const video = await Video.findById(id);
+
+  if (!video) {
+    return res.sendStatus(404);
+  }
+
+  const comment = await Videocomment.create({
+    text,
+    name: user.name,
+    owner: user._id,
+    video: id,
+  });
+  video.comments.push(comment._id);
+  video.save();
+
+  return res.sendStatus(201);
+};
+
+export const videoDeleteComment = async (req, res) => {
+  const { id, videoid } = req.body; // comment id, video id
+  const { _id } = req.session.user; // user id
+  const { owner } = await Videocomment.findById(id);
+  const video = await Video.findById(videoid);
+  if (String(owner) !== _id) return res.sendStatus(403);
+  else {
+    await Videocomment.findByIdAndDelete(id);
+    video.comments.splice(video.comments.indexOf(videoid), 1);
+    video.save();
+    return res.sendStatus(200);
+  }
 };

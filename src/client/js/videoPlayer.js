@@ -149,6 +149,7 @@ const keyBtnControls = (event) => {
 };
 
 const handleEnded = () => {
+  //조회수
   const { id } = videoContainer.dataset;
   fetch(`/api/videos/${id}/view`, {
     method: "POST",
@@ -166,7 +167,8 @@ video.addEventListener("timeupdate", handleTimeUpdate);
 video.addEventListener("mousemove", handleMouseMove);
 video.addEventListener("mouseleave", handleMouseLeave);
 video.addEventListener("click", handleVideoPlayClick);
-video.addEventListener("ended", handleEnded);
+
+video.addEventListener("ended", handleEnded); //비디오 영상 조회수
 
 videoContainer.addEventListener("mousemove", handleMouseMove);
 videoContainer.addEventListener("mouseleave", handleMouseLeave);

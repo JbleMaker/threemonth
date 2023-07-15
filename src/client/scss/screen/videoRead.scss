@@ -1,0 +1,124 @@
+.video__data{
+  .video__title{
+    margin-top: 25px;
+    font-size:25px;
+  }
+  .video__owner{
+    display: flex;
+    align-items: center;
+    margin: 25px 0px;
+    position: relative;
+    .video__owner-avatar{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    div{
+      margin-left: 20px;
+      font-size:16px;
+      font-weight:500;
+      p{
+        margin-top: 2px;
+        font-size:12px;
+        opacity: 0.5;
+      }
+    }
+    .video__controlls{
+      display: flex;
+      position: absolute;
+      right:0;
+      margin-right: 10px;
+      .button{
+        font-size: 14px;
+        padding: 5px 10px;
+        background-color: $content;
+        border-radius: 20px;
+        margin:0px 5px;
+      }
+      .button:hover{
+        background-color: #c7c7c7;
+      }
+    }
+  }
+  .video__info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color:$content ;
+    width: 99%;
+    height:100px;
+    border-radius: 20px;
+    box-sizing:border-box;
+    padding: 10px 25px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    div{
+      span:last-child{
+        margin-left: 10px;
+      }
+    }
+    .video__info-center{
+      margin: 5px 0px;
+      color: #1A6BD6;
+    }
+  }
+}
+
+.add__comment{
+  width: 100%;
+  .add__comment-form{
+    textarea{
+      font-family: 'Noto Sans KR';
+      border:none;
+      border-bottom: 1px solid $content;
+      width: 80%;
+      margin: 30px 15px;
+      font-size: 15px;
+      &:focus{
+        outline: 0;
+        border: none;
+        border-bottom: 2px solid $content;
+      }
+      &::placeholder{
+        color:gray;
+      }
+    }
+    button{
+      display: none;
+    }
+  }
+}
+
+.comments__content{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  width: 90%;
+  height: 70px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  .comment__name{
+    margin: 10px 20px;
+    padding-right: 10px;
+    border-right: 2px solid rgb(134, 134, 134);
+  }
+  div{
+    display: flex;
+    flex-direction: column;
+    .comment__date{
+      font-size: 12px;
+      opacity: 0.7;
+    }
+  }
+  button{
+    position: absolute;
+    right: 0;
+    border: none;
+    font-size: 20px;
+    margin-right: 30px;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}

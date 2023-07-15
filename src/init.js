@@ -9,6 +9,11 @@ import "./models/Market";
 import "./models/Notice";
 import "./models/Community";
 
+//commentModels
+import "./models/Marketcomment";
+import "./models/Communitycomment";
+import "./models/Videocomment";
+
 const PORT = 4000;
 
 const listeningServer = () => {

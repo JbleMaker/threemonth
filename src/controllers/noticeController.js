@@ -4,8 +4,10 @@ import User from "../models/User";
 const ERROR_CODE = 404;
 
 export const noticeView = async (req, res) => {
-  const notices = await Notice.find({}).sort({ createdAt: "desc" });
-  // console.log(notice);
+  const notices = await Notice.find({})
+    .populate("owner")
+    .sort({ createdAt: "desc" });
+
   return res.render("notice/noticeView", { pageTitle: "Notice", notices });
 };
 
@@ -13,6 +15,7 @@ export const noticeRead = async (req, res) => {
   const { id } = req.params;
   const notice = await Notice.findById(id).populate("owner");
   // console.log(notice);
+  console.log(notice);
   return res.render("notice/noticeRead", { pageTitle: "Notice", notice });
 };
 
@@ -113,4 +116,15 @@ export const noticeDelete = async (req, res) => {
   user.notices.splice(user.notices.indexOf(id), 1);
   user.save();
   return res.redirect("/noticeView");
+};
+
+export const noticeRegisterView = async (req, res) => {
+  const { id } = req.params;
+  const notice = await Notice.findById(id);
+  if (!notice) {
+    return res.sendStatus(404);
+  }
+  notice.meta.views = notice.meta.views + 1;
+  await notice.save();
+  return res.sendStatus(200);
 };

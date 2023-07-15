@@ -1,7 +1,10 @@
 mixin community(community)
   div
     h4 
-      a(href=`/community/${community.id}`)=community.title
-    ul
-      li #{community.division}
-      small #{community.createdAt}.
+      a(href=`/community/${community.id}`)#communityView(data-id=community._id)=community.title
+    br
+    span #{community.division}
+    span #{community.owner.name} • 
+    span #{community.meta.views} 회
+    br
+    small=new Date(community.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})

@@ -8,6 +8,10 @@ const marketSchema = new mongoose.Schema({
   contents: { type: String, required: true, trim: true },
   createdAt: { type: Date, required: true, default: Date.now },
   owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
+  meta: {
+    views: { type: Number, default: 0, required: true },
+  },
+  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Marketcomment" }],
 });
 
 const Market = mongoose.model("Market", marketSchema);

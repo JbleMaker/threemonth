@@ -1,7 +1,10 @@
 mixin market(market)
   div
     h4 
-      a(href=`/market/${market.id}`)=market.title
-    ul
-      li #{market.division}
-      small #{market.createdAt}.
+      a(href=`/market/${market.id}`)#marketView(data-id=market._id)=market.title
+      br
+      span #{market.division}
+      span #{market.owner.name} • 
+      span #{market.meta.views} 회
+      br
+      small=new Date(market.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})

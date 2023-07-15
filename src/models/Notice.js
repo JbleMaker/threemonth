@@ -5,6 +5,9 @@ const noticeSchema = new mongoose.Schema({
   contents: { type: String, required: true },
   createdAt: { type: Date, required: true, default: Date.now },
   owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
+  meta: {
+    views: { type: Number, default: 0, required: true },
+  },
 });
 
 const Notice = mongoose.model("Notice", noticeSchema);
