@@ -203,7 +203,7 @@ export const postUserEdit = async (req, res) => {
       avatarUrl: file ? `/${file.path}` : avatarUrl,
       email,
       name,
-      location,
+      location: "",
     },
     { new: true }
   );
