@@ -15,6 +15,7 @@ header{
     justify-content: center;
     width: 70%;
     .header__list-user{
+      list-style:none;
       display: flex;
       justify-content:flex-end;
       align-items: center;
@@ -34,6 +35,7 @@ header{
   justify-content: center;
   width: 100%;
   .header__list-content{
+    list-style:none;
     display: flex;
     justify-content: center;
     width: 60%;
