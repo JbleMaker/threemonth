@@ -7,9 +7,7 @@ module.exports = {
   entry: {
     main: BASE_JS + "main.js",
     videoPlayer: BASE_JS + "videoPlayer",
-    noticeView: BASE_JS + "noticeView",
-    marketView: BASE_JS + "marketView",
-    communityView: BASE_JS + "communityView",
+    mainView: BASE_JS + "mainView",
     ////////////////////////////
     marketComment: BASE_JS + "marketComment",
     communityComment: BASE_JS + "communityComment",
