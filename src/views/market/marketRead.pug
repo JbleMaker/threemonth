@@ -15,7 +15,7 @@ block content
           p=market.contents
 
   div.owner
-    img.owner-avatar(src=market.owner.avatarUrl)
+    img.owner-avatar(src=market.owner.avatarUrl crossorigin)
     div
       a(href=`/users/${market.owner._id}`) #{market.owner.name}
       p="1102K subScriber"

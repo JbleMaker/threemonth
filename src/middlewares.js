@@ -2,6 +2,8 @@ import multer from "multer";
 import multerS3 from "multer-s3";
 import { S3Client } from "@aws-sdk/client-s3";
 
+const isHeroku = process.env.NODE_ENV === "production";
+
 const s3 = new S3Client({
   region: "ap-northeast-2",
   // region error solve
@@ -67,11 +69,11 @@ export const publicOnlyMiddleware = (req, res, next) => {
 export const uploadAvatar = multer({
   dest: "uploads/avatars/",
   limits: {},
-  storage: imageUplaoder,
+  storage: isHeroku ? imageUplaoder : undefined,
 });
 
 export const uploadVideo = multer({
   dest: "uploads/videos/",
   limits: {},
-  storage: videoUplaoder,
+  storage: isHeroku ? videoUplaoder : undefined,
 });

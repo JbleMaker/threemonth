@@ -13,7 +13,7 @@ block content
           p=communities.contents
 
   div.owner
-    img.owner-avatar(src=communities.owner.avatarUrl)
+    img.owner-avatar(src=communities.owner.avatarUrl crossorigin)
     div
       a(href=`/users/${communities.owner._id}`) #{communities.owner.name}
       p="1102K subScriber"
