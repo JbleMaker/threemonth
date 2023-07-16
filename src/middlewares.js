@@ -18,7 +18,7 @@ const s3 = new S3Client({
 
 const imageUplaoder = multerS3({
   s3: s3,
-  bucket: "threemonth/images",
+  bucket: "threemonth/",
   Condition: {
     StringEquals: {
       "s3:x-amz-acl": ["public-read"],
@@ -28,7 +28,7 @@ const imageUplaoder = multerS3({
 
 const videoUplaoder = multerS3({
   s3: s3,
-  bucket: "threemonth/videos",
+  bucket: "threemonth/",
   Condition: {
     StringEquals: {
       "s3:x-amz-acl": ["public-read"],
