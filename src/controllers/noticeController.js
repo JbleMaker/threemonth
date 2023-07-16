@@ -78,10 +78,12 @@ export const postNoticeEdit = async (req, res) => {
   const {
     user: { _id },
   } = req.session;
+
+  const notice = await Notice.findById(id);
+
   if (String(notice.owner) !== String(_id)) {
     return res.status(403).redirect("/");
   }
-  const notice = await Notice.findById(id);
 
   if (!notice) {
     return res

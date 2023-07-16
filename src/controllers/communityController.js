@@ -77,13 +77,10 @@ export const getCommuEdit = async (req, res) => {
 export const postCommuEdit = async (req, res) => {
   const {
     params: { id },
-    body: { title, division, contents },
-  } = req;
-
-  const {
     session: {
       user: { _id },
     },
+    body: { title, division, contents },
   } = req;
 
   const communities = await Community.findById(id);
@@ -96,11 +93,13 @@ export const postCommuEdit = async (req, res) => {
   if (String(communities.owner) !== String(_id)) {
     return res.status(403).redirect("/");
   }
-  await communities.findByIdAndUpdate(id, {
+
+  await Community.findByIdAndUpdate(id, {
     title,
     division,
     contents,
   });
+
   return res.redirect("/communityView");
 };
 
