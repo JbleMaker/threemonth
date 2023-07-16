@@ -11,26 +11,21 @@ block content
     else 
       span.empty__message No Videos found.
 
-  //- div
-  //-   each video in user.videos 
-  //-     +video(video)
-  //-   else 
-  //-     li Sorry Video is not Found.
-  //-   hr
-  //- div
-  //-   each market in user.markets 
-  //-     +market(market)
-  //-   else 
-  //-     li There are no Market posts.
-  //-   hr
-  //- div
-  //-   each notice in user.notices 
-  //-     +notice(notice)
-  //-   else 
-  //-     li There are no Notice posts.
-  //-   hr
-  //- div  
-  //-   each community in user.communities
-  //-     +community(community)
-  //-   else 
-  //-     li There are no Community posts.
+  div.content__main
+    each market in user.markets 
+      +market(market)
+    else 
+      li There are no Market posts.
+
+  if loggedInUser.identifier === "admin"  
+    div.content__main
+      each notice in user.notices 
+        +notice(notice)
+      else 
+        li There are no Notice posts.
+
+  div.content__main
+    each community in user.communities
+      +community(community)
+    else 
+      li There are no Community posts.

@@ -16,6 +16,6 @@ block content
         p="1102K subScriber"
       div.controlls
         if String(notice.owner._id.toString()) === String(loggedInUser._id) || loggedInUser.identifier ==="admin"
-          a.button(href=`${notice.id}/edit`) Edit Video &rarr; 
+          a.button(href=`${notice.id}/edit`) Edit &rarr; 
           br
-          a.button(href=`${notice.id}/delete`) Delete Video &rarr;
+          a.button(href=`${notice.id}/delete`) Delete &rarr;

@@ -19,9 +19,9 @@ block content
       p="1102K subScriber"
     div.controlls
       if String(communities.owner._id.toString()) === String(loggedInUser._id) || loggedInUser.identifier ==="admin"
-        a.button(href=`${communities.id}/edit`) Edit Video &rarr; 
+        a.button(href=`${communities.id}/edit`) Edit &rarr; 
         br
-        a.button(href=`${communities.id}/delete`) Delete Video &rarr;
+        a.button(href=`${communities.id}/delete`) Delete &rarr;
 
   if loggedIn
     div.add__comment

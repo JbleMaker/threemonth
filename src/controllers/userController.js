@@ -257,13 +257,35 @@ export const postChangePassword = async (req, res) => {
 export const userProfile = async (req, res) => {
   const { id } = req.params;
   console.log(id);
-  const user = await User.findById(id).populate({
-    path: "videos",
-    populate: {
-      path: "owner",
-      model: "User",
-    },
-  });
+  const user = await User.findById(id)
+    .populate({
+      path: "videos",
+      populate: {
+        path: "owner",
+        model: "User",
+      },
+    })
+    .populate({
+      path: "markets",
+      populate: {
+        path: "owner",
+        model: "User",
+      },
+    })
+    .populate({
+      path: "communities",
+      populate: {
+        path: "owner",
+        model: "User",
+      },
+    })
+    .populate({
+      path: "notices",
+      populate: {
+        path: "owner",
+        model: "User",
+      },
+    });
   console.log(user);
 
   if (!user) {
