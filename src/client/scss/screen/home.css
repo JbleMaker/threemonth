@@ -1,0 +1,31 @@
+.notice__section {
+  margin-bottom: 40px;
+}
+
+.grid__section {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+}
+
+.home__content {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 10px;
+}
+.home__content .home__content-header {
+  font-size: 14px;
+}
+.home__content .home__content-header span {
+  font-weight: 600;
+  margin-right: 10px;
+}
+.home__content .home__content-owner {
+  font-size: 14px;
+}
+.home__content .home__content-owner .owner__name {
+  font-weight: 500;
+}
+.home__content .home__content-owner .owner__date {
+  font-size: 13px;
+  margin: 0px 10px;
+}/*# sourceMappingURL=home.css.map */

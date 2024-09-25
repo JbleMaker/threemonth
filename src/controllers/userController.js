@@ -1,5 +1,4 @@
 import User from "../models/User";
-import fetch from "node-fetch";
 import bcrypt from "bcrypt";
 import Video from "../models/Video";
 import Market from "../models/Market";
@@ -90,8 +89,7 @@ export const startKakaoLogin = (req, res) => {
   const baseUrl = "https://kauth.kakao.com/oauth/authorize";
   const config = {
     client_id: process.env.KAKAO_CLIENT,
-    redirect_uri:
-      "https://threemonth-snowboard-2e6321aec62c.herokuapp.com/users/kakao/finish",
+    redirect_uri: "https://threemonth.fly.dev/users/kakao/finish",
     response_type: "code",
   };
   const params = new URLSearchParams(config).toString();
@@ -106,8 +104,7 @@ export const finishKakaoLogin = async (req, res) => {
     client_id: process.env.KAKAO_CLIENT,
     client_secret: process.env.KAKAO_SECRET,
     grant_type: "authorization_code",
-    redirect_uri:
-      "https://threemonth-snowboard-2e6321aec62c.herokuapp.com/users/kakao/finish",
+    redirect_uri: "https://threemonth.fly.dev/users/kakao/finish",
     code: req.query.code,
   };
   const params = new URLSearchParams(config).toString();

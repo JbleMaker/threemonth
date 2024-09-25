@@ -13,7 +13,7 @@ module.exports = {
     communityComment: BASE_JS + "communityComment",
     videoComment: BASE_JS + "videoComment",
   },
-  mode: "development",
+
   plugins: [
     new MiniCssExtractPlugin({
       filename: "css/styles.css",

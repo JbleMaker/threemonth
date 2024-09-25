@@ -1,0 +1,27 @@
+.footer__main {
+  display: flex;
+  justify-content: center;
+}
+.footer__main .footer__container {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+  height: 100px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-top: 1px solid black;
+}
+.footer__main .footer__container img {
+  width: 150px;
+  opacity: 0.6;
+}
+.footer__main .footer__container .footer__social a {
+  margin: 0px 20px;
+  opacity: 0.8;
+}
+.footer__main .footer__container footer {
+  opacity: 0.6;
+  text-align: center;
+}/*# sourceMappingURL=footer.css.map */

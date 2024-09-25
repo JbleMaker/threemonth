@@ -1,0 +1,31 @@
+.title__total {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.title__total .title__content-read {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin: 0px 10px;
+  border-bottom: 2px solid #EBECEF;
+  border-top: 3px solid #EBECEF;
+  padding: 30px 0px;
+}
+.title__total .title__content-read .title__content-title {
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.title__total .title__content-read .title__content-date {
+  font-size: 14px;
+  margin-right: 10px;
+}
+.title__total .title__content-contents {
+  border-bottom: 1px solid #EBECEF;
+  padding: 20px;
+}
+.title__total .title__content-contents pre p {
+  font-size: 16px;
+  margin: 0px 20px;
+}/*# sourceMappingURL=titleShared.css.map */

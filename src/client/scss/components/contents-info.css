@@ -1,0 +1,12 @@
+.contents__info {
+  display: flex;
+  justify-content: space-around;
+  font-size: 14px;
+  font-family: "Noto Sans KR";
+}
+.contents__info span {
+  border-bottom: 1px solid #eeeeee;
+  padding: 6px;
+  box-shadow: 2px 2px 5px #eeeeee;
+  border-radius: 10px;
+}/*# sourceMappingURL=contents-info.css.map */

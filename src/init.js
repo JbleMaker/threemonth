@@ -14,7 +14,7 @@ import "./models/Marketcomment";
 import "./models/Communitycomment";
 import "./models/Videocomment";
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 
 const listeningServer = () => {
   console.log(`✅ Listening to server: http://localhost:${PORT} 🚀`);

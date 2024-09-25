@@ -1,12 +1,22 @@
 import multer from "multer";
 import multerS3 from "multer-s3";
+import { S3Client } from "@aws-sdk/client-s3";
 import aws from "aws-sdk";
 
-const isHeroku = process.env.NODE_ENV === "production";
+// const isHeroku = process.env.NODE_ENV === "production";
 
-const s3 = new aws.S3({
+// const s3 = new aws.S3({
+//   credentials: {
+//     apiVersion: "2023-07-15",
+//     //날짜는 aws->IAM->user->user click 시 생성날짜 존재
+//     accessKeyId: process.env.AWS_ID,
+//     secretAccessKey: process.env.AWS_SECRET,
+//   },
+// });
+
+const s3Client = new S3Client({
+  region: "ap-northeast-2",
   credentials: {
-    apiVersion: "2023-07-15",
     //날짜는 aws->IAM->user->user click 시 생성날짜 존재
     accessKeyId: process.env.AWS_ID,
     secretAccessKey: process.env.AWS_SECRET,
@@ -14,8 +24,8 @@ const s3 = new aws.S3({
 });
 
 const imageUplaoder = multerS3({
-  s3: s3,
-  bucket: "threemonth/images",
+  s3: s3Client,
+  bucket: "threemonth-re/image",
   acl: "public-read",
 
   // Condition: {
@@ -26,8 +36,8 @@ const imageUplaoder = multerS3({
 });
 
 const videoUplaoder = multerS3({
-  s3: s3,
-  bucket: "threemonth/videos",
+  s3: s3Client,
+  bucket: "threemonth-re/videos",
   acl: "public-read",
 
   // Condition: {
@@ -68,13 +78,11 @@ export const publicOnlyMiddleware = (req, res, next) => {
 };
 
 export const uploadAvatar = multer({
-  dest: "uploads/avatars/",
   limits: {},
-  storage: isHeroku ? imageUplaoder : undefined,
+  storage: s3Storage,
 });
 
 export const uploadVideo = multer({
-  dest: "uploads/videos/",
   limits: {},
-  storage: isHeroku ? videoUplaoder : undefined,
+  storage: s3Storage,
 });
